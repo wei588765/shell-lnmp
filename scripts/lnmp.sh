@@ -7,12 +7,14 @@ read -p "install php(y/n):" p
 read -p "install redis(y/n):" q
 ##环境配置
 yum install -y make cmake gcc gcc-c++ autoconf automake libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libiconv libmcrypt mhashmcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
-if [ $? != 0 ];then exit 1;fi
-cd /tools/package/
-tar xf boost_1_59_0.tar.gz
-mv boost_1_59_0 /usr/local/boost_1_59_0
-ln -s /usr/local/boost_1_59_0 /usr/local/boost
-
+function boost()
+{
+  if [ $? != 0 ];then exit 1;fi
+  cd /tools/package/
+  tar xf boost_1_59_0.tar.gz
+  mv boost_1_59_0 /usr/local/boost_1_59_0
+  ln -s /usr/local/boost_1_59_0 /usr/local/boost
+}
 ##安装nginx
 pkill nginx
 if [ $n == "y" ]
@@ -45,6 +47,7 @@ fi
 pkill mysql
 if [ $m == "y" ]
 then
+boost
 useradd -s /sbin/nologin -M mysql
 cd /tools/package/
 if [ -d mysql-5.7.23 ];then rm -rf /tools/package/mysql-5.7.23;fi
@@ -104,7 +107,7 @@ else
  echo "php don't install!!!"
 fi
 
-if [ $p == "q" ]
+if [ $q == "y" ]
 then
 cd /tools/package
 if [ -d redis-4.0.11 ];then rm -rf /tools/package/redis-4.0.11;fi
@@ -112,6 +115,7 @@ tar xf redis-4.0.11.tar.gz
 cd /tools/package/redis-4.0.11
 make MALLOC=libc
 cd src && make install
+mkdir -p /etc/redis
 cp /tools/package/redis-4.0.11/redis.conf /etc/redis/6379.conf && sed -i "s#daemonize no#daemonize yes#g" /etc/redis/6379.conf
 cp /tools/package/redis-4.0.11/utils/redis_init_script /etc/init.d/redis && sed -i "2i# chkconfig:   2345 90 10" /etc/init.d/redis
 chkconfig redis on      
