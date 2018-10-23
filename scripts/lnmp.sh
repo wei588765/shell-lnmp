@@ -4,6 +4,7 @@ echo "please choose server which need to install"
 read -p "install nginx(y/n):" n
 read -p "install mysql(y/n):" m
 read -p "install php(y/n):" p
+read -p "install redis(y/n):" q
 ##环境配置
 yum install -y make cmake gcc gcc-c++ autoconf automake libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libiconv libmcrypt mhashmcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
 if [ $? != 0 ];then exit 1;fi
@@ -101,4 +102,31 @@ chmod +x /usr/local/sbin/php-fpm
 php-fpm
 else
  echo "php don't install!!!"
+fi
+
+if [ $p == "q" ]
+then
+cd /tools/package
+if [ -d redis-4.0.11 ];then rm -rf /tools/package/redis-4.0.11;fi
+tar xf redis-4.0.11.tar.gz
+cd /tools/package/redis-4.0.11
+make MALLOC=libc
+cd src && make install
+cp /tools/package/redis-4.0.11/redis.conf /etc/redis/6379.conf && sed -i "s#daemonize no#daemonize yes#g" /etc/redis/6379.conf
+cp /tools/package/redis-4.0.11/utils/redis_init_script /etc/init.d/redis && sed -i "2i# chkconfig:   2345 90 10" /etc/init.d/redis
+chkconfig redis on      
+#启动redis     
+systemctl start redis
+#关闭redis            
+#systemctl stop redis 
+#进入redis
+#redis-cli   
+#密码登陆redis
+#redis-cli -a "password"
+#redis设置密码：
+#vim /etc/redis/6379.conf打开requirepass这项的注释，在其后添加密码     
+#指定配置文件启动redis
+#redis-server redis.conf
+else
+  echo "redis don't install!!!"
 fi
