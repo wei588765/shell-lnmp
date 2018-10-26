@@ -34,7 +34,7 @@ chown -R www.www /usr/local/nginx-1.14.0
 ln -s /usr/local/nginx-1.14.0 /usr/local/nginx
 cd /usr/local/sbin
 if [ -f nginx ];then rm -rf /usr/local/sbin/nginx;fi
-ln -s /usr/local/nginx-1.14.0/sbin/nginx /usr/local/sbin/nginx
+ln -s /usr/local/nginx/sbin/nginx /usr/local/sbin/nginx
 chmod +x /usr/local/sbin/nginx
 nginx
 echo -e "[Unit]\nDescription=nginx\nAfter=network.target\n[Service]\nType=forking\nExecStart=/usr/local/nginx/sbin/nginx\nExecReload=/usr/local/nginx/sbin/nginx reload\nExecStop=/usr/local/nginx/sbin/nginx quit\nPrivateTmp=true\n[Install]\nWantedBy=multi-user.target" > /lib/systemd/system/nginx.service
@@ -97,8 +97,8 @@ ln -s /usr/local/php-7.2.8 /usr/local/php
 cd /usr/local/php-7.2.8/etc/php-fpm.d && cp www.conf.default www.conf
 cd /usr/local/sbin
 if [ -f php-fpm ];then rm -rf /usr/local/sbin/php-fpm;fi
-ln -s /usr/local/php-7.2.8/sbin/php-fpm /usr/local/sbin/php-fpm
-ln -s /usr/local/php-7.2.8/sbin/php-fpm /etc/init.d/php-fpm
+ln -s /usr/local/php/sbin/php-fpm /usr/local/sbin/php-fpm
+ln -s /usr/local/php/sbin/php-fpm /etc/init.d/php-fpm
 chmod 755 /etc/init.d/php-fpm
 systemctl enable php-fpm
 chmod +x /usr/local/sbin/php-fpm
