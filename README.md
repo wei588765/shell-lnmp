@@ -1,4 +1,4 @@
-# Designed by HCWEI
+# Designed by hcwei
 # DATE: 2018-10-23 17:45:00
 # Github: https://github.com/wei588765/shell-lnmp.git
 
