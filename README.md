@@ -11,11 +11,11 @@ php-7.2.8
 redis-4.0.11
 
 使用方法：
-服务器根下创建tools目录：
-mkdir /tools
-
 拉取本实例代码及软件：
 git clone https://github.com/wei588765/shell-lnmp.git
+
+讲文件夹改名为tools并放到根目录：
+mv shell-lnmp /tools
 
 进入scripts文件夹并运行lnmp.sh，根据需求安装相应软件：
 cd /tools/scripts && sh lnmp.sh
