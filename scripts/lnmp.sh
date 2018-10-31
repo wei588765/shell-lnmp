@@ -6,7 +6,7 @@ read -p "install mysql(y/n):" m
 read -p "install php(y/n):" p
 read -p "install redis(y/n):" q
 ##环境配置
-yum install -y make cmake gcc gcc-c++ autoconf automake libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libiconv libmcrypt mhash mcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
+yum install -y make cmake gcc gcc-c++ autoconf automake lbzip2 libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libmcrypt mhash mcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
 function boost()
 {
   if [ $? != 0 ];then exit 1;fi
@@ -15,6 +15,14 @@ function boost()
   mv boost_1_59_0 /usr/local/boost_1_59_0
   ln -s /usr/local/boost_1_59_0 /usr/local/boost
 }
+
+function libiconv()
+{
+  cd /tools/package/
+  tar xf libiconv-1.14.tar.gz
+  mv libiconv /usr/local/
+}
+
 ##安装nginx
 pkill nginx
 if [ $n == "y" ]
@@ -78,6 +86,7 @@ fi
 pkill php
 if [ $p == "y" ]
 then
+libiconv
 cd /tools/package
 if [ -d php-7.2.8 ];then rm -rf /tools/package/php-7.2.8;fi
 tar xf php-7.2.8.tar.bz2 
