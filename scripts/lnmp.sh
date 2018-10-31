@@ -92,7 +92,7 @@ if [ -d php-7.2.8 ];then rm -rf /tools/package/php-7.2.8;fi
 tar xf php-7.2.8.tar.bz2 
 cd php-7.2.8
 useradd -s /sbin/nologin -M www
-./configure --prefix=/usr/local/php-7.2.8 --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir --enable-simplexml --enable-xml --disable-rpath --enable-bcmath --enable-soap --enable-zip --with-curl --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mbstring --enable-sockets --with-gd --with-openssl --with-mhash --enable-opcache --disable-fileinfo
+./configure --prefix=/usr/local/php-7.2.8 --with-mysqli --with-pdo-mysql --with-iconv-dir=/usr/local/libiconv --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir --enable-simplexml --enable-xml --disable-rpath --enable-bcmath --enable-soap --enable-zip --with-curl --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mbstring --enable-sockets --with-gd --with-openssl --with-mhash --enable-opcache --disable-fileinfo
 if [ $? != 0 ];then exit 1;fi
 make -j 4
 if [ $? != 0 ];then exit 1;fi
