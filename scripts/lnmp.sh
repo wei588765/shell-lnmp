@@ -6,7 +6,7 @@ read -p "install mysql(y/n):" m
 read -p "install php(y/n):" p
 read -p "install redis(y/n):" q
 ##环境配置
-yum install -y make cmake gcc gcc-c++ autoconf automake libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libiconv libmcrypt mhashmcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
+yum install -y make cmake gcc gcc-c++ autoconf automake libpng-devel libjpeg-devel zlib libxml2-devel ncurses-devel bison libtool-ltdl-devel libiconv libmcrypt mhash mcrypt libmcrypt-devel pcre-devel openssl-devel freetype-devel libcurl-devel
 function boost()
 {
   if [ $? != 0 ];then exit 1;fi
