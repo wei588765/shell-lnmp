@@ -15,7 +15,7 @@ redis-4.0.11
 git clone https://github.com/wei588765/shell-lnmp.git
 
 讲文件夹改名为tools并放到根目录：
-mv shell-lnmp /tools
+mv /shell-lnmp /tools
 
 进入scripts文件夹并运行lnmp.sh，根据需求安装相应软件：
 cd /tools/scripts && sh lnmp.sh
