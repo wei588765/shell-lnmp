@@ -62,7 +62,7 @@ if [ -d mysql-5.7.23 ];then rm -rf /tools/package/mysql-5.7.23;fi
 tar xf mysql-5.7.23.tar.gz
 cd mysql-5.7.23
 rm -rf CMakeCache.txt
-cmake  -DCMAKE_INSTALL_PREFIX=/usr/local/mysql-5.7.23  -DMYSQL_DATADIR=/usr/local/mysql-5.7.23/data  -DMYSQL_UNIX_ADDR=/tmp/mysql.sock  -DDEFAULT_CHARSET=utf8  -DDEFAULT_COLLATION=utf8_general_ci  -DWITH_BOOST=/usr/local/boost
+cmake  -DCMAKE_INSTALL_PREFIX=/usr/local/mysql-5.7.23  -DMYSQL_DATADIR=/usr/local/mysql-5.7.23/data  -DMYSQL_UNIX_ADDR=/usr/local/mysql-5.7.23/data/mysql.sock  -DDEFAULT_CHARSET=utf8  -DDEFAULT_COLLATION=utf8_general_ci  -DWITH_BOOST=/usr/local/boost
 if [ $? != 0 ];then exit 1;fi
 make -j 4
 if [ $? != 0 ];then exit 1;fi
